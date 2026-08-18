@@ -1,71 +1,90 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+/* ================= BASE URL ================= */
+
+const BASE_URL = import.meta.env.BASE_URL
+
+const image = (name) => {
+  const base = BASE_URL.endsWith('/') ? BASE_URL : `${BASE_URL}/`
+  return `${base}images/${name}`
+}
+
+/* ================= TITAN DATA ================= */
+
 const titanData = [
   {
     number: '01',
     title: 'ATTACK TITAN',
     jp: '進撃の巨人',
-    image: '/images/attack-titan.jpg',
-    text: 'ไททันจู่โจมเป็นหนึ่งในพลังไททันที่เอเลนครอบครอง มีจุดเด่นด้านการต่อสู้และมีความเชื่อมโยงกับความทรงจำของผู้ถือครอง'
+    image: image('attack-titan.jpg'),
+    text: 'ไททันจู่โจมเป็นหนึ่งในพลังไททันที่เอเลนครอบครอง มีจุดเด่นด้านการต่อสู้ และมีความสามารถในการเชื่อมโยงความทรงจำของผู้ถือครอง'
   },
   {
     number: '02',
     title: 'FOUNDING TITAN',
     jp: '始祖の巨人',
-    image: '/images/founding-titan.jpg',
-    text: 'ไททันผู้ก่อตั้งเป็นพลังที่มีอำนาจมหาศาล สามารถส่งผลต่อชาวเอลเดียและเกี่ยวข้องกับเส้นทาง Paths'
+    image: image('founding-titan.jpg'),
+    text: 'ไททันผู้ก่อตั้งเป็นหนึ่งในพลังไททันที่ทรงอำนาจที่สุด และเกี่ยวข้องกับชาวเอลเดีย รวมถึง Paths'
   },
   {
     number: '03',
     title: 'WAR HAMMER TITAN',
     jp: '戦槌の巨人',
-    image: '/images/war-hammer-titan.jpg',
-    text: 'ไททันค้อนสงครามสามารถสร้างอาวุธและโครงสร้างจากเนื้อไททัน ทำให้เอเลนสามารถสร้างอาวุธเพื่อใช้ในการต่อสู้'
+    image: image('war-hammer-titan.jpg'),
+    text: 'ไททันค้อนสงครามสามารถสร้างอาวุธและโครงสร้างจากเนื้อไททัน ทำให้เอเลนมีความสามารถในการต่อสู้ที่หลากหลายมากขึ้น'
   }
 ]
+
+/* ================= CHARACTER DATA ================= */
 
 const characters = [
   {
     name: 'MIKASA ACKERMAN',
     role: 'CHILDHOOD FRIEND',
-    image: '/images/mikasa.jpg',
-    text: 'มิคาสะเป็นเพื่อนวัยเด็กของเอเลนและมีความผูกพันกับเขาอย่างมาก ทั้งสองเติบโตมาด้วยกันหลังจากเหตุการณ์ในวัยเด็ก'
+    image: image('mikasa.jpg'),
+    text: 'มิคาสะเป็นเพื่อนวัยเด็กของเอเลน ทั้งสองเติบโตมาด้วยกัน และมิคาสะมีความผูกพันกับเอเลนอย่างมาก'
   },
   {
     name: 'ARMIN ARLERT',
     role: 'BEST FRIEND',
-    image: '/images/armin.jpg',
-    text: 'อาร์มินเป็นเพื่อนสนิทของเอเลน ทั้งสามคนมีความฝันเกี่ยวกับโลกภายนอกและเคยสัญญาว่าจะออกไปเห็นมันด้วยกัน'
+    image: image('armin.jpg'),
+    text: 'อาร์มินเป็นเพื่อนสนิทของเอเลน ทั้งสามคนมีความฝันที่จะออกไปเห็นโลกภายนอกกำแพง'
   },
   {
     name: 'GRISHA YEAGER',
     role: 'FATHER',
-    image: '/images/grisha.jpg',
-    text: 'กริชา เยเกอร์ เป็นพ่อของเอเลนและเป็นบุคคลสำคัญที่เชื่อมโยงเอเลนกับพลังไททันและความลับของโลก'
+    image: image('grisha.jpg'),
+    text: 'กริชา เยเกอร์ เป็นพ่อของเอเลน และเป็นบุคคลสำคัญที่เกี่ยวข้องกับพลังไททันและความลับของโลก'
   }
 ]
 
-function Home() {
+/* ================= HOME ================= */
 
+function Home() {
   const navigate = useNavigate()
 
   const [menuOpen, setMenuOpen] = useState(false)
+
+  /* ================= LOGOUT ================= */
 
   const logout = () => {
     sessionStorage.removeItem('isLogin')
     navigate('/')
   }
 
+  /* ================= CLOSE MENU ================= */
+
   const closeMenu = () => {
     setMenuOpen(false)
   }
 
   return (
-
     <div className="site">
 
-      {/* ================= NAVBAR ================= */}
+      {/* =====================================================
+          NAVBAR
+      ===================================================== */}
 
       <nav className={`navbar ${menuOpen ? 'menu-open' : ''}`}>
 
@@ -74,7 +93,6 @@ function Home() {
           className="nav-brand"
           onClick={closeMenu}
         >
-
           <div className="brand-symbol">
             進
           </div>
@@ -83,7 +101,6 @@ function Home() {
             <strong>EREN</strong>
             <span>YEAGER</span>
           </div>
-
         </a>
 
         <div className="nav-center">
@@ -143,28 +160,35 @@ function Home() {
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="menu"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span />
+          <span />
+          <span />
         </button>
 
       </nav>
 
-      {/* ================= HERO ================= */}
+      {/* =====================================================
+          HERO
+      ===================================================== */}
 
       <header
         id="top"
         className="hero"
       >
 
-        <div className="hero-image"></div>
+        <div
+          className="hero-image"
+          style={{
+            backgroundImage: `url("${image('eren-hero.jpg')}")`
+          }}
+        />
 
-        <div className="hero-overlay"></div>
+        <div className="hero-overlay" />
 
         <div className="hero-content">
 
           <div className="hero-line">
-            <span></span>
+            <span />
             <p>ATTACK ON TITAN</p>
           </div>
 
@@ -207,7 +231,9 @@ function Home() {
 
       </header>
 
-      {/* ================= ABOUT ================= */}
+      {/* =====================================================
+          ABOUT
+      ===================================================== */}
 
       <section
         id="about"
@@ -235,7 +261,7 @@ function Home() {
             <div className="about-image">
 
               <img
-                src="/images/eren-child.jpg"
+                src={image('eren-child.jpg')}
                 alt="Eren childhood"
               />
 
@@ -248,8 +274,9 @@ function Home() {
             <div className="about-text">
 
               <p className="lead">
-                เอเลน เยเกอร์ คือเด็กหนุ่มจากเขตชิงันชินะ
-                ผู้มีความฝันที่จะออกไปเห็นโลกภายนอกกำแพง
+                เอเลน เยเกอร์ คือเด็กหนุ่มจาก
+                เขตชิงันชินะ ผู้มีความฝันที่จะออกไป
+                เห็นโลกภายนอกกำแพง
               </p>
 
               <p>
@@ -261,12 +288,13 @@ function Home() {
               <p>
                 เหตุการณ์ในปี 845 เปลี่ยนชีวิตของเขา
                 เมื่อไททันมหึมาปรากฏตัวและกำแพงมาเรียถูกทำลาย
-                ส่งผลให้ผู้คนจำนวนมากต้องสูญเสียบ้านและครอบครัว
+                ทำให้ผู้คนจำนวนมากต้องสูญเสียบ้านและครอบครัว
               </p>
 
               <p>
-                หลังจากสูญเสียแม่ เอเลนจึงสาบานว่าจะกำจัดไททัน
-                และเข้าร่วมกองกำลังฝึกทหารในปี 847
+                หลังจากสูญเสียแม่ เอเลนจึงตั้งเป้าหมาย
+                ที่จะกำจัดไททัน และเข้าร่วมกองกำลังฝึกทหาร
+                รุ่นที่ 104
               </p>
 
               <div className="stats">
@@ -296,7 +324,9 @@ function Home() {
 
       </section>
 
-      {/* ================= STORY ================= */}
+      {/* =====================================================
+          STORY
+      ===================================================== */}
 
       <section
         id="story"
@@ -304,13 +334,15 @@ function Home() {
       >
 
         <div className="story-bg">
+
           <img
-            src="/images/eren-soldier.jpg"
+            src={image('eren-soldier.jpg')}
             alt="Eren soldier"
           />
+
         </div>
 
-        <div className="story-overlay"></div>
+        <div className="story-overlay" />
 
         <div className="story-content">
 
@@ -333,16 +365,18 @@ function Home() {
           </p>
 
           <p>
-            จากเด็กที่ต้องการฆ่าไททันทั้งหมด
-            เขากลายเป็นบุคคลที่ต้องตัดสินใจ
-            ระหว่างอนาคตของคนที่รักกับชะตากรรมของโลก
+            จากเด็กที่ต้องการกำจัดไททันทั้งหมด
+            เขากลายเป็นบุคคลที่ต้องเผชิญกับคำถาม
+            เกี่ยวกับเสรีภาพและอนาคตของผู้คนที่เขารัก
           </p>
 
         </div>
 
       </section>
 
-      {/* ================= TIMELINE ================= */}
+      {/* =====================================================
+          TIMELINE
+      ===================================================== */}
 
       <section className="section timeline-section">
 
@@ -379,7 +413,7 @@ function Home() {
                   ไททันมหึมาและไททันเกราะปรากฏตัว
                   และกำแพงมาเรียถูกทำลาย
                   เอเลนสูญเสียแม่และตั้งเป้าหมาย
-                  กำจัดไททันทั้งหมด
+                  ที่จะกำจัดไททัน
                 </p>
               </div>
 
@@ -470,7 +504,9 @@ function Home() {
 
       </section>
 
-      {/* ================= TITANS ================= */}
+      {/* =====================================================
+          TITANS
+      ===================================================== */}
 
       <section
         id="titans"
@@ -541,7 +577,9 @@ function Home() {
 
       </section>
 
-      {/* ================= ABILITIES ================= */}
+      {/* =====================================================
+          ABILITIES
+      ===================================================== */}
 
       <section className="section abilities-section">
 
@@ -565,40 +603,53 @@ function Home() {
 
             <article>
               <span>01</span>
-              <h3>TITAN TRANSFORMATION</h3>
+
+              <h3>
+                TITAN TRANSFORMATION
+              </h3>
+
               <p>
-                สามารถแปลงร่างเป็นไททัน
-                เพื่อเพิ่มพลังทางกายภาพ
-                และใช้ในการต่อสู้
+                เอเลนสามารถแปลงร่างเป็นไททัน
+                เพื่อเพิ่มพลังทางกายภาพและใช้ในการต่อสู้
               </p>
             </article>
 
             <article>
               <span>02</span>
-              <h3>HARDENING</h3>
+
+              <h3>
+                HARDENING
+              </h3>
+
               <p>
-                สามารถใช้พลังทำให้ส่วนต่าง ๆ
-                ของร่างกายแข็งตัว
-                เพื่อป้องกันและโจมตี
+                สามารถใช้พลังการแข็งตัวของเนื้อไททัน
+                เพื่อสร้างเกราะและอาวุธในการต่อสู้
               </p>
             </article>
 
             <article>
               <span>03</span>
-              <h3>MEMORIES</h3>
+
+              <h3>
+                MEMORIES
+              </h3>
+
               <p>
                 พลังของไททันจู่โจมเกี่ยวข้องกับ
-                ความทรงจำที่เชื่อมโยงระหว่าง
-                ผู้ถือครองในช่วงเวลาต่าง ๆ
+                ความทรงจำที่เชื่อมโยงระหว่างผู้ถือครอง
               </p>
             </article>
 
             <article>
               <span>04</span>
-              <h3>FOUNDING POWER</h3>
+
+              <h3>
+                FOUNDING POWER
+              </h3>
+
               <p>
-                พลังไททันผู้ก่อตั้งมีความเกี่ยวข้อง
-                กับชาวเอลเดียและ Paths
+                พลังไททันผู้ก่อตั้งเกี่ยวข้องกับชาวเอลเดีย
+                และโลกของ Paths
               </p>
             </article>
 
@@ -608,7 +659,9 @@ function Home() {
 
       </section>
 
-      {/* ================= CHARACTERS ================= */}
+      {/* =====================================================
+          CHARACTERS
+      ===================================================== */}
 
       <section
         id="characters"
@@ -671,7 +724,9 @@ function Home() {
 
       </section>
 
-      {/* ================= RUMBLING ================= */}
+      {/* =====================================================
+          RUMBLING
+      ===================================================== */}
 
       <section
         id="rumbling"
@@ -680,11 +735,11 @@ function Home() {
 
         <img
           className="rumbling-bg"
-          src="/images/rumbling.jpg"
+          src={image('rumbling.jpg')}
           alt="The Rumbling"
         />
 
-        <div className="rumbling-overlay"></div>
+        <div className="rumbling-overlay" />
 
         <div className="rumbling-content">
 
@@ -715,7 +770,9 @@ function Home() {
 
       </section>
 
-      {/* ================= FINAL QUOTE ================= */}
+      {/* =====================================================
+          FINAL QUOTE
+      ===================================================== */}
 
       <section className="final-section">
 
@@ -737,12 +794,13 @@ function Home() {
 
       </section>
 
-      {/* ================= FOOTER ================= */}
+      {/* =====================================================
+          FOOTER
+      ===================================================== */}
 
       <footer>
 
         <div>
-
           <strong>
             EREN YEAGER
           </strong>
@@ -750,11 +808,9 @@ function Home() {
           <p>
             Attack on Titan Character Website
           </p>
-
         </div>
 
         <div>
-
           <p>
             FAN-MADE WEBSITE
           </p>
@@ -762,13 +818,11 @@ function Home() {
           <p>
             BUILT WITH REACT
           </p>
-
         </div>
 
       </footer>
 
     </div>
-
   )
 }
 
