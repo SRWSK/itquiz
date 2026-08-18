@@ -1,0 +1,369 @@
+.login-page {
+  min-height: 100vh;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+
+  background: #050505;
+  color: white;
+}
+
+.login-bg {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    url("/images/eren-hero.jpg");
+
+  background-size: cover;
+  background-position: center;
+
+  filter: grayscale(60%);
+
+  transform: scale(1.05);
+}
+
+.login-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.96),
+      rgba(0,0,0,.72),
+      rgba(0,0,0,.35)
+    );
+
+  z-index: 1;
+}
+
+.login-page::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: 2;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent 49.9%,
+      rgba(255,255,255,.05) 50%,
+      transparent 50.1%
+    );
+
+  pointer-events: none;
+}
+
+.login-decoration {
+  position: absolute;
+
+  right: 4%;
+  top: 50%;
+
+  transform:
+    translateY(-50%)
+    rotate(180deg);
+
+  writing-mode: vertical-rl;
+
+  font-size: 70px;
+
+  letter-spacing: 18px;
+
+  color: rgba(255,255,255,.05);
+
+  z-index: 2;
+}
+
+.login-container {
+  position: relative;
+
+  width: min(500px, 90%);
+
+  z-index: 5;
+}
+
+.login-top,
+.login-bottom {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  color: #777;
+
+  font-size: 9px;
+
+  letter-spacing: 3px;
+}
+
+.login-top {
+  margin-bottom: 18px;
+}
+
+.login-top div {
+  width: 40px;
+
+  height: 1px;
+
+  background: #a72b2b;
+}
+
+.login-card {
+  position: relative;
+
+  padding: 50px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(20,20,20,.92),
+      rgba(8,8,8,.82)
+    );
+
+  border:
+
+    1px solid
+    rgba(255,255,255,.13);
+
+  box-shadow:
+
+    0 40px 100px
+    rgba(0,0,0,.7);
+
+  backdrop-filter: blur(20px);
+}
+
+.login-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 80px;
+  height: 3px;
+
+  background: #a72b2b;
+}
+
+.login-card::after {
+  content: "";
+
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+
+  width: 80px;
+  height: 3px;
+
+  background: #a72b2b;
+}
+
+.login-symbol {
+  width: 55px;
+  height: 55px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #a72b2b;
+
+  color: #a72b2b;
+
+  font-size: 28px;
+
+  margin-bottom: 25px;
+}
+
+.login-label {
+  color: #a72b2b;
+
+  font-size: 10px;
+
+  letter-spacing: 5px;
+}
+
+.login-card h1 {
+  margin: 15px 0;
+
+  font-size: 55px;
+
+  line-height: .9;
+
+  letter-spacing: -3px;
+}
+
+.login-card h1 span {
+  display: block;
+
+  color: #a72b2b;
+}
+
+.login-description {
+  color: #777;
+
+  font-size: 13px;
+
+  line-height: 1.8;
+
+  margin-bottom: 35px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #888;
+
+  font-size: 9px;
+
+  letter-spacing: 3px;
+}
+
+.form-group input {
+  width: 100%;
+
+  padding: 15px;
+
+  box-sizing: border-box;
+
+  background: rgba(255,255,255,.04);
+
+  border: 1px solid #333;
+
+  outline: none;
+
+  color: white;
+
+  font-family: inherit;
+
+  transition: .3s;
+}
+
+.form-group input:focus {
+  border-color: #a72b2b;
+
+  background: rgba(167,43,43,.05);
+}
+
+.form-group input::placeholder {
+  color: #555;
+}
+
+.login-error {
+  margin: 10px 0;
+
+  padding: 12px;
+
+  border-left: 3px solid #a72b2b;
+
+  background: rgba(167,43,43,.1);
+
+  color: #d96a6a;
+
+  font-size: 12px;
+}
+
+.login-button {
+  width: 100%;
+
+  margin-top: 10px;
+
+  padding: 16px 20px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  border: none;
+
+  background: #a72b2b;
+
+  color: white;
+
+  cursor: pointer;
+
+  font-weight: 800;
+
+  letter-spacing: 3px;
+
+  transition: .3s;
+}
+
+.login-button:hover {
+  background: #c43737;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 15px 35px
+    rgba(167,43,43,.25);
+}
+
+.login-button b {
+  font-size: 20px;
+}
+
+.login-demo {
+  margin-top: 25px;
+
+  color: #555;
+
+  font-size: 10px;
+
+  text-align: center;
+
+  letter-spacing: 1px;
+}
+
+.login-demo strong {
+  color: #888;
+}
+
+.login-bottom {
+  margin-top: 18px;
+
+  justify-content: center;
+
+  gap: 15px;
+}
+
+@media (max-width: 600px) {
+
+  .login-card {
+    padding: 35px 25px;
+  }
+
+  .login-card h1 {
+    font-size: 45px;
+  }
+
+  .login-decoration {
+    display: none;
+  }
+
+  .login-top span:last-child {
+    display: none;
+  }
+
+}
